@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
         var ground = BABYLON.Mesh.CreatePlane("ground", 100, scene);
-        ground.position.y = -5;
+        ground.position.y = -2.5;
         ground.rotation.x = Math.PI / 2;
 
         var materialGrass = new BABYLON.StandardMaterial("grass", scene);
@@ -70,13 +70,15 @@ window.addEventListener('DOMContentLoaded', function(){
     // call the createScene function
     var scene = createScene();
 
-    var createSnakeBox = function(){
+    var createSnakeBox = function(x, z){
         var boxOptions = {
             width: 5,
             height: 5,
             depth: 5
         };
         var box = BABYLON.MeshBuilder.CreateBox('box', boxOptions, scene);
+        box.position.x = x;
+        box.position.z = z;
         snakeArray.push(box)
     };
 
@@ -92,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function(){
         foodArray.push(food)
     };
 
-    createSnakeBox();
+    createSnakeBox(2.5, 2.5);
 
     var startCreate = 0;
 
@@ -186,7 +188,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
         if(create == 1){
             snakeArray.push(box);
-            console.log(snakeArray);
         }
 
         loop+=1;
